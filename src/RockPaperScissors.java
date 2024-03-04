@@ -41,18 +41,27 @@ public class RockPaperScissors {
                 System.out.println(playerAMove + " vs " + playerBMove + " It's a Tie!");
             } else {
                 String result;
+                String winningPhrase = "";
+
                 if ((playerAMove.equals("R") && playerBMove.equals("S")) ||
                         (playerAMove.equals("P") && playerBMove.equals("R")) ||
                         (playerAMove.equals("S") && playerBMove.equals("P"))) {
                     result = "Player A wins";
+                    // Determine the winning phrase based on Player A's move
+                    switch (playerAMove) {
+                        case "R": winningPhrase = "Rock breaks Scissors"; break;
+                        case "P": winningPhrase = "Paper covers Rock"; break;
+                        case "S": winningPhrase = "Scissors cuts Paper"; break;
+                    }
                 } else {
                     result = "Player B wins";
+                    // Determine the winning phrase based on Player B's move
+                    switch (playerBMove) {
+                        case "R": winningPhrase = playerAMove.equals("S") ? "Rock breaks Scissors" : "Paper covers Rock"; break;
+                        case "P": winningPhrase = playerAMove.equals("R") ? "Paper covers Rock" : "Scissors cuts Paper"; break;
+                        case "S": winningPhrase = playerAMove.equals("P") ? "Scissors cuts Paper" : "Rock breaks Scissors"; break;
+                    }
                 }
-                String winningPhrase = switch (playerAMove) {
-                    case "R" -> "Rock breaks Scissors";
-                    case "P" -> "Paper covers Rock";
-                    default -> "Scissors cuts Paper";
-                };
                 System.out.println(winningPhrase + ", " + result);
             }
 
